@@ -1,0 +1,33 @@
+ul {
+
+    list-style: none;
+ text-align: center;
+}
+
+li {position: relative;}
+
+.nav {
+    position: relative;
+    color: #EEF2F5;
+    font-weight: 500;
+}
+
+.nav:after {
+    color: #EA0F62;
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 50%;
+    position: absolute;
+     background: linear-gradient(95.57deg, #D51058 13.11%, #d65886 54.44%);
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+}
+
+.nav:hover:after {
+    width: 100%;
+    left: 0;
+    color: #D51058;
+}

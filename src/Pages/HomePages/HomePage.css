@@ -1,0 +1,23 @@
+.section {
+    background: #eee;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #000;
+    margin: 0;
+    padding: 0;
+}
+
+.swiper-slide {
+  
+    margin-bottom: 30px !important;
+  }
+
+
+.swiper-pagination{
+ 
+    bottom: 0 !important;
+   font-size: 40px !important;
+}
+.swiper-pagination .swiper-pagination-bullet-active {
+  background-color: rgb(226, 96, 194);
+}

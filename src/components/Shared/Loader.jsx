@@ -1,0 +1,16 @@
+import Lottie from 'lottie-react'
+import loginPhoto from '../../assets/loginPhoto.png'
+import spinner from '../../assets/Spinner.json'
+const Loader = () => {
+    return (
+        <>
+            <div className='flex justify-center my-64  items-center'>
+                    <img className='relative z-2 w-[15%]' src={loginPhoto}></img>
+                    <Lottie className=" w-[30%] flex absolute  justify-center items-center" animationData={spinner} loop={true} 
+                    ></Lottie>
+                  </div>
+        </>
+    );
+};
+
+export default Loader;
