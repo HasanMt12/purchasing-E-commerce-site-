@@ -1,15 +1,17 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
+
+import { RouterProvider } from 'react-router-dom'
 import './App.css'
+import router from './Router/Routes'
+import { Toaster } from 'react-hot-toast'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
       <div>
-      <h2 className='text-teal-600'>start</h2>
+       <RouterProvider router={router}></RouterProvider>
+      <Toaster position="top-center" reverseOrder={false}></Toaster>
       </div>
    
     </>
