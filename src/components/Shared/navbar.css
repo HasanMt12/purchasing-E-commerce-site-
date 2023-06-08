@@ -8,7 +8,7 @@ li {position: relative;}
 
 .nav {
     position: relative;
-    color: #EEF2F5;
+    color: #fcfdfd;
     font-weight: 500;
 }
 
@@ -21,7 +21,7 @@ li {position: relative;}
     height: 2px;
     left: 50%;
     position: absolute;
-     background: linear-gradient(95.57deg, #D51058 13.11%, #d65886 54.44%);
+     background: linear-gradient(95.57deg, #832044 13.11%, #d17b9b 54.44%);
     transition: width 0.3s ease 0s, left 0.3s ease 0s;
     width: 0;
 }

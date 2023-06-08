@@ -17,18 +17,20 @@ const Navbar = () => {
        <Link to='/'><li className='cursor-Pointer nav hover:text-[#F10B65]'>Blog</li></Link> 
        {/* <Link to='/'> <li className='cursor-Pointer nav hover:text-[#F10B65]'>Claim Cashback</li></Link> */}
        <li className='cursor-Pointer nav hover:text-[#F10B65]'>Whats new</li>
-       <Link to='/'><li className='cursor-Pointer nav hover:text-[#F10B65]' onClick={() => setModalStatus(true)}>Login</li></Link> 
+       <Link to='/'><li className='cursor-Pointer nav hover:text-[#F10B65]' >My Profile</li></Link> 
         <Link to='/'> 
-            <button className='bg-[#F10B65] px-4 text-md rounded-sm text-white'>My profile</button>
+            <button onClick={() => setModalStatus(true)}
+            style={{boxShadow:"0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0)"}}
+            className='flex text-[#EEF2F5] justify-center transition duration-200 ease-in-out transform px-5 py-1 w-30 border-b-4 border-[#df81a5] hover:border-b-2 bg-gradient-to-t from-[#cc5a86]  via-[#EA0F62] to-[#e2a1ba] rounded-2xl hover:translate-y-px '>Login</button>
         </Link>
      </Fragment>
     return (
     <>
       <div>
     
-        <div className="bg-[#8dcee7] " >
-      <div className="px-4 py-3 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-16 lg:px-6 ">
-        <div className="relative flex items-center lg:justify-evenly justify-between gap-36">
+        <div className="bg-[#82c1da] " >
+      <div className="px-4 py-3 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl ">
+        <div className="relative flex items-center  justify-between ">
           <a
             href="/"
             aria-label="Company"
@@ -50,7 +52,7 @@ const Navbar = () => {
               className="p-2 -mr-1 transition duration-200 rounded focus:outline-none focus:shadow-outline"
               onClick={() => setIsMenuOpen(true)}
             >
-              <svg className="w-5 text-slate-500" viewBox="0 0 24 24">
+              <svg className = "w-5 text-[#EA0F62]" viewBox="0 0 24 24" >
                 <path
                   fill="currentColor"
                   d="M23,13H1c-0.6,0-1-0.4-1-1s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,13,23,13z"
@@ -66,7 +68,7 @@ const Navbar = () => {
               </svg>
             </button>
             {isMenuOpen && (
-              <div className="absolute z-10 top-0 left-0 w-full bg-[#207198]" >
+              <div className="absolute z-10 top-0 left-0 w-full bg-[#82c1da]" >
                 <div className="p-5  border rounded shadow-lg" >
                   <div className="flex items-center justify-between mb-4">
                     <div>
@@ -84,7 +86,7 @@ const Navbar = () => {
                       <button
                         aria-label="Close Menu"
                         title="Close Menu"
-                        className="p-2 -mt-2   -mr-2 transition duration-200 rounded hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                        className="p-2 -mt-2 bg-[#EA0F62]  -mr-2 transition duration-200 rounded hover:bg-[#c7497a] focus:bg-[#EA0F62] focus:outline-none focus:shadow-outline"
                         onClick={() => setIsMenuOpen(false)}
                       >
                         <svg className="w-5 text-gray-600" viewBox="0 0 24 24">
@@ -97,7 +99,7 @@ const Navbar = () => {
                     </div>
                   </div>
                   <nav>
-                    <ul className="space-y-4 text-white font-bold ">
+                    <ul className="space-y-4 text-start font-bold ">
                       {menuItems}
                     </ul>
                   </nav>

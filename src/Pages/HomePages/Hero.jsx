@@ -26,16 +26,16 @@ const Hero = () => {
             autoplay={{ delay: 4000,}}
           >
           
-            <SwiperSlide  className='my-2 lg:my-4'> 
+            <SwiperSlide  className='my-1 lg:my-2'> 
                     <img src={logo1} className=" " />
               </SwiperSlide>
-            <SwiperSlide  className='my-2 lg:my-4'> 
+            <SwiperSlide  className='my-1 lg:my-2'> 
                     <img src={logo2} className=" " />
               </SwiperSlide>
-              <SwiperSlide  className='my-2 lg:my-4'> 
+              <SwiperSlide  className='my-1 lg:my-2'> 
                     <img src={logo3} className=" " />
               </SwiperSlide>
-              <SwiperSlide  className='my-2 lg:my-4'> 
+              <SwiperSlide  className='my-1 lg:my-2'> 
                     <img src={logo4} className=" " />
               </SwiperSlide>
            
