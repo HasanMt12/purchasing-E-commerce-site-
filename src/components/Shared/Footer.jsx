@@ -45,10 +45,10 @@ const Footer = () => {
                 <a className="text-[#fcfdfd] hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="">Terms &amp; Conditions</a>
               </li>
               <li>
-                <a className="">Privacy Policy</a>
+                <a className="text-[#fcfdfd] hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="">Privacy policy</a>
               </li>
               <li>
-                <a className="">Contact Us</a>
+                <a className="text-[#fcfdfd] hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="">Contact Us</a>
               </li>
             </ul>
           </div>

@@ -15,7 +15,7 @@ import './HomePage.css'
 const Hero = () => {
     return (
         <div className="">
-           <Swiper className='lg:w-[60%] md:w-[75%] sm:w-[85%]  mx-auto'
+           <Swiper className='lg:w-[80%] md:w-[90%] sm:w-[85%]  mx-auto'
           slidesPerview={1}
           pagination={{
           clickable: true,

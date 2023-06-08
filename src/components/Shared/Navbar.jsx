@@ -28,7 +28,7 @@ const Navbar = () => {
     <>
       <div>
     
-        <div className="bg-[#82c1da] " >
+        <div className="bg-[#82c1da]  " >
       <div className="px-4 py-3 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl ">
         <div className="relative flex items-center  justify-between ">
           <a
@@ -140,7 +140,10 @@ const Navbar = () => {
             <input type='email' className='bg-gray-50 mb-2 rounded shadow-inner placeholder:text-center h-10   focus:outline-blue-800 border-[1px] border-gray-800 w-full '/>
             <p>Password</p>
             <input type='email'  className='bg-gray-50 rounded shadow-inner placeholder:text-center h-10  focus:outline-blue-800 border-[1px] border-gray-800 w-full '/>
-            <Link to='/'>
+            <Link to = '/'
+            onClick = {
+              () => setModalStatus(false)
+            } >
                  <button className='h-10 w-full loginButton mt-2 rounded text-white text-center'>Login</button>
             </Link>
             <h2 className='text-xs text-[#207198]'>Forgot Password?</h2>
