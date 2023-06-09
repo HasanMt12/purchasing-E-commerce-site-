@@ -29,11 +29,11 @@ const Navbar = () => {
     
        <Link to='/'> <li className='cursor-Pointer nav hover:text-[#F10B65]'>Offer List</li></Link>
        <Link to='/'><li className='cursor-Pointer nav hover:text-[#F10B65]'>Blog</li></Link> 
-       {/* <Link to='/'> <li className='cursor-Pointer nav hover:text-[#F10B65]'>Claim Cashback</li></Link> */}
-       <li className='cursor-Pointer nav hover:text-[#F10B65]'>Whats new</li>
+
+    
        <Link to='/'><li className='cursor-Pointer nav hover:text-[#F10B65]' >My Profile</li></Link> 
        {
-        isAdmin &&  <li className='cursor-Pointer nav hover:text-[#F10B65]'>Whats new</li>
+        isAdmin &&  <Link to='/dashboard'><li className='cursor-Pointer nav hover:text-[#F10B65]'>Dashboard</li></Link>
        }
        {user?.uid 
        
