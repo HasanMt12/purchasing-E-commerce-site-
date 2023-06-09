@@ -3,6 +3,7 @@ import { useState } from "react";
 import { IoIosArrowForward} from "react-icons/io";
 import ProductAction from "./ProductAction";
 import AllUsers from "./Allusers";
+import PaymentInvoice from "./PaymentInvoice";
 const Dashboard = () => {
 
         const [openTab, setOpenTab] = useState(1);
@@ -65,15 +66,9 @@ const Dashboard = () => {
                 (openTab === 3
                     ? " md:text-md text-xs text-[#EA0F62]"
                     : "md:text-md text-xs text-[#686063] ")}>
-              <h2>Home And Kitchen</h2><IoIosArrowForward></IoIosArrowForward>
+              <h2>Payment Product</h2><IoIosArrowForward></IoIosArrowForward>
             </li>
-           <li onClick={e => {e.preventDefault(); setOpenTab(4); }}
-             className = {"cursor-pointer md:mx-2 sm:mx-1 md:my-4 my-2 font-semibold  uppercase hover:text-[#EA0F62]  text-start flex justify-start  items-center "+
-                (openTab === 4
-                    ? " md:text-md text-xs text-[#EA0F62]"
-                    : "md:text-md text-xs text-[#686063] ")}>
-              <h2>Baby Product</h2><IoIosArrowForward></IoIosArrowForward>
-            </li>
+          
           </ul>
             </div>  
                    <div className="relative flex flex-col min-w-0 break-words  w-full mb-6 ">
@@ -88,11 +83,9 @@ const Dashboard = () => {
                 <ProductAction></ProductAction>
                 </div>
                  <div className={openTab === 3 ? "block" : "hidden"} id="link2">
-                  
+                  <PaymentInvoice></PaymentInvoice>
                 </div>
-                <div className={openTab === 4 ? "block" : "hidden"} id="link2">
-                  
-                </div>
+               
            
               </div>
             </div>

@@ -1,4 +1,4 @@
-import { Fragment, useContext, useState } from 'react';
+import { Fragment, useContext, useEffect, useState } from 'react';
 import logo from '../../assets/y.jpg'
 import { Link, useNavigate } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
@@ -7,38 +7,53 @@ import "./navbar.css"
 import { AuthContext } from '../../Authentication/AuthProvider';
 import { useForm } from "react-hook-form";
 import useAdmin from '../../hooks/useAdminSecurity';
-import { AiFillHeart } from 'react-icons/ai';
+import { AiFillHeart, AiOutlineShoppingCart } from 'react-icons/ai';
+import logo99 from '../../assets/logo99.png'
 
 const Navbar = () => {
    const [isMenuOpen, setIsMenuOpen] = useState(false);
    const [modalStatus, setModalStatus] = useState(false);
    const {user , logOut} = useContext(AuthContext);
    const [isAdmin] = useAdmin(user?.email)
+
    const { register, formState: { errors }, handleSubmit } = useForm();
         const { signIn ,signInWithGoogle }= useContext(AuthContext)
         const [signInError, setSignInError] = useState('');
         const [signInUserEmail, setSignInUserEmail] = useState('');
       const form = location.state?.form?.pathname || '/';
-        const handleLogOut = () => {
+       
+      const handleLogOut = () => {
         logOut()
         .then( ()=> {} )
         .catch(error => console.log(error));
     }
    const navigate = useNavigate();
 
+   const [data, setData] = useState([]);
+  useEffect(() => {
+    fetch(`https://99-pro-server.vercel.app/wishlist?email=${user?.email}&&limit=3`)
+      .then((res) => res.json())
+      .then((data) => setData(data));
+  }, [user?.email]);
+
   const menuItems = <Fragment>
     
-       <Link to='/'> <li className='cursor-Pointer nav hover:text-[#F10B65]'>Offer List</li></Link>
-       <Link to='/'><li className='cursor-Pointer nav hover:text-[#F10B65]'>Blog</li></Link> 
 
-    
-       
+       <Link to='/'><li className='cursor-Pointer nav hover:text-[#F10B65]'>Blog</li></Link> 
        {
         isAdmin &&  <Link to='/dashboard'><li className='cursor-Pointer nav hover:text-[#F10B65]'>Dashboard</li></Link>
        }
- <Link to='/wishlist'> <AiFillHeart  className='cursor-Pointer  text-red-500 text-2xl rounded-lg  shadow-lg' ></AiFillHeart></Link> 
+      <span className="relative inline-block ml-8">
+        <Link to='/cart'> <AiOutlineShoppingCart  className='cursor-Pointer   text-white font-bold text-4xl  ' ></AiOutlineShoppingCart></Link> 
+        <span className="absolute top-0 right-0 inline-block w-3 h-3 transform translate-x-1/2 animate-bounce font-bold text-blue-800 -translate-y-1/2  rounded-full">{data.length}</span>
+      </span>
+
+       <span className="relative inline-block ml-8">
+        <Link to='/wishlist'> <AiFillHeart  className='cursor-Pointer   text-red-600 text-4xl rounded-lg  shadow-lg' ></AiFillHeart></Link> 
+        <span className="absolute top-0 right-0 inline-block w-3 h-3 transform translate-x-1/2 animate-bounce font-bold text-white -translate-y-1/2  rounded-full">{data.length}</span>
+      </span>
+ 
        {user?.uid 
-       
        ? <>
        
             <button style={{boxShadow:"0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0)"}}
@@ -141,7 +156,7 @@ const Navbar = () => {
                         className="inline-flex items-center"
                       >
                        
-                       <img className='w-[60%] h-[50%] lg:w-[100%] lg:h-[100%] md:h-[80%] md:w-[65%]' src={logo} alt=''></img>
+                       <img className='w-[30%] h-[30%] lg:w-[100%] lg:h-[100%] md:h-[80%] md:w-[65%]' src={logo99} alt=''></img>
                       </a>
                     </div>
                     <div>
@@ -184,7 +199,7 @@ const Navbar = () => {
           // role="dialog"
           // aria-modal="true"
         >
-          <div data-aosName="zoom-in" className=" lg:ml-64  fixed inset-0 z-10 overflow-y-auto ">
+          <div data-aosName="zoom-in" className=" lg:ml-60 fixed inset-0 z-10 overflow-y-auto ">
            
             <div className="flex min-h-full items-end justify-center  text-center sm:items-center sm:p-0">
 
@@ -252,9 +267,6 @@ const Navbar = () => {
                 <h2 className='text-sm text-[#207198]'>Continue With Google</h2>
                 
             </div></div>
-          
-          
-       
         </div>
                 </div>
               </div>

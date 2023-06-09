@@ -1,26 +1,26 @@
 import { useContext, useState } from 'react';
-import {  useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { AuthContext } from '../../../Authentication/AuthProvider';
 import { FcGoogle } from 'react-icons/fc';
-import useToken from '../../../hooks/useToken';
+import { BsFacebook } from 'react-icons/bs';
+import loginPhoto from '../../../assets/logo99.png'
+import useToken from '../../../hooks/useToken.js';
 const Registration = () => {
       const {register, handleSubmit , formState: {errors} } = useForm();
      const { signUp ,updateUser, signInWithGoogle}= useContext(AuthContext);
      const [registerError, setRegisterError] = useState('')
      const [createdUserEmail, setCreatedUserEmail] = useState('')
      const navigate = useNavigate()
-      const [token] = useToken(createdUserEmail);
-    const form = location.state?.form?.pathname || '/';
-      if(token){
+       const [token] = useToken(createdUserEmail);
+     if(token){
             navigate('/')
         }
-        
      const handleSignUp = data =>{
    setRegisterError('')
 
-    // console.log(data);
+    console.log(data);
 
     signUp(data.email, data.password)
 
@@ -63,7 +63,7 @@ const Registration = () => {
     signInWithGoogle().then(result => {
       console.log(result.user)
     
-      navigate(form, { replace: true })
+    //   navigate(from, { replace: true })
     })
   }
     return (

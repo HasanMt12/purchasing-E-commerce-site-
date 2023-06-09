@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { toast } from "react-hot-toast";
 import { AuthContext } from "../../../Authentication/AuthProvider";
-import { AiFillHeart } from "react-icons/ai";
+
 const ProductCard = ({product}) => {
     const { photo, name, price} = product;
      const {user} = useContext(AuthContext)
@@ -13,7 +13,7 @@ const ProductCard = ({product}) => {
     dbWishlist.color = "red";
     delete dbWishlist._id;
 
-    fetch('http://localhost:5000/wishlist', {
+    fetch('https://99-pro-server.vercel.app/wishlist', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -28,6 +28,32 @@ const ProductCard = ({product}) => {
       })
       .catch((err) => toast.error(err.message));
   };
+
+
+   const handleAddtoCart = (product) => {
+    const dbCart = { ...product };
+    dbCart.email = user?.email;
+    
+    delete dbCart._id;
+
+    fetch('https://99-pro-server.vercel.app/cart', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dbCart),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+      
+        console.log(result)
+        toast.success("cart added successfully");
+      })
+      .catch((err) => toast.error(err.message));
+  };
+  
+
+
     return (
         <>
             <div 
@@ -67,7 +93,8 @@ const ProductCard = ({product}) => {
     </p>
 
    
-      <button
+      <button 
+      onClick={() => handleAddtoCart(product)}
         className=" w-[90%] inset-x-0 absolute lg:bottom-5 bottom-2 mx-auto text-white rounded bg-[#ee7da8] lg:p-2 p-[4px] lg:text-sm text-xs  font-medium transition hover:scale-105"
       >
         Add to Cart
