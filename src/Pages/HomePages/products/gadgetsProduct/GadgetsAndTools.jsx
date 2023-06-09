@@ -12,7 +12,7 @@ const GadgetsAndTools = () => {
                 const response = await fetch('https://99-pro-server.vercel.app/gadgetsAndTools');
                 const data = await response.json();
                 setAllGadgets(data)
-                console.log(data);
+             
                 // Update state or do something with the fetched data
             } catch (error) {
                 console.error('Error fetching data:', error);

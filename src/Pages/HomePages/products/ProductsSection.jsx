@@ -13,7 +13,7 @@ const ProductsSection = () => {
                 const response = await fetch('https://99-pro-server.vercel.app/allProducts');
                 const data = await response.json();
                 setAllProducts(data)
-                console.log(data);
+               
                 // Update state or do something with the fetched data
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -25,7 +25,7 @@ const ProductsSection = () => {
     return (
          <div>
             <h2 className = "my-4 text-center text-[#b84f77] text-2xl font-bold" >
-                All Products 
+                Recommended Products
             </h2>
               <div className="section">
             {allProducts && 

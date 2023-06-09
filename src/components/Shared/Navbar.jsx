@@ -1,34 +1,90 @@
-import { Fragment, useState } from 'react';
-import logo from '../../assets/logo99.png'
-import { Link } from 'react-router-dom';
+import { Fragment, useContext, useState } from 'react';
+import logo from '../../assets/y.jpg'
+import { Link, useNavigate } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
-import { BsFacebook } from "react-icons/bs";
-// import CompanyLogo from '../assets/Union.svg'
-
 import loginPhoto from '../../assets/login.png'
 import "./navbar.css"
+import { AuthContext } from '../../Authentication/AuthProvider';
+import { useForm } from "react-hook-form";
+import useAdmin from '../../hooks/useAdminSecurity';
 
 const Navbar = () => {
    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [modalStatus, setModalStatus] = useState(false);
-   const menuItems = <Fragment>
+   const [modalStatus, setModalStatus] = useState(false);
+   const {user , logOut} = useContext(AuthContext);
+   const [isAdmin] = useAdmin(user?.email)
+   const { register, formState: { errors }, handleSubmit } = useForm();
+        const { signIn ,signInWithGoogle }= useContext(AuthContext)
+        const [signInError, setSignInError] = useState('');
+        const [signInUserEmail, setSignInUserEmail] = useState('');
+      const form = location.state?.form?.pathname || '/';
+        const handleLogOut = () => {
+        logOut()
+        .then( ()=> {} )
+        .catch(error => console.log(error));
+    }
+   const navigate = useNavigate();
+
+  const menuItems = <Fragment>
     
        <Link to='/'> <li className='cursor-Pointer nav hover:text-[#F10B65]'>Offer List</li></Link>
        <Link to='/'><li className='cursor-Pointer nav hover:text-[#F10B65]'>Blog</li></Link> 
        {/* <Link to='/'> <li className='cursor-Pointer nav hover:text-[#F10B65]'>Claim Cashback</li></Link> */}
        <li className='cursor-Pointer nav hover:text-[#F10B65]'>Whats new</li>
        <Link to='/'><li className='cursor-Pointer nav hover:text-[#F10B65]' >My Profile</li></Link> 
+       {
+        isAdmin &&  <li className='cursor-Pointer nav hover:text-[#F10B65]'>Whats new</li>
+       }
+       {user?.uid 
+       
+       ? <>
+       
+            <button style={{boxShadow:"0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0)"}}
+            className='flex text-[#EEF2F5] justify-center transition duration-200 ease-in-out transform px-5 py-1 w-30 border-b-4 border-[#df81a5] hover:border-b-2 bg-gradient-to-t from-[#cc5a86]  via-[#EA0F62] to-[#e2a1ba] rounded-2xl hover:translate-y-px '><Link onClick={handleLogOut}>log out</Link></button>
+       </> 
+       
+       : 
         <Link to='/'> 
-            <button onClick={() => setModalStatus(true)}
+            <button
             style={{boxShadow:"0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0)"}}
-            className='flex text-[#EEF2F5] justify-center transition duration-200 ease-in-out transform px-5 py-1 w-30 border-b-4 border-[#df81a5] hover:border-b-2 bg-gradient-to-t from-[#cc5a86]  via-[#EA0F62] to-[#e2a1ba] rounded-2xl hover:translate-y-px '>Login</button>
+            className='flex text-[#EEF2F5] justify-center transition duration-200 ease-in-out transform px-5 py-1 w-30 border-b-4 border-[#df81a5] hover:border-b-2 bg-gradient-to-t from-[#cc5a86]  via-[#EA0F62] to-[#e2a1ba] rounded-2xl hover:translate-y-px '
+            onClick={() => setModalStatus(true)}
+            >Login</button>
         </Link>
+        }
      </Fragment>
+
+
+  const handleLogin = data =>{
+            console.log(data);
+            setSignInError('');
+             signIn(data.email, data.password)
+            .then(result=>{
+                const user = result.user;
+                console.log(user);
+                setSignInUserEmail(data.email)
+                setModalStatus(false)
+            })
+            .catch(error=> {
+                console.log(error.message)
+                setSignInError(error.message);
+            });
+        
+        }
+
+        const handleGoogleSignin = () => {
+            signInWithGoogle().then(result => {
+                console.log(result.user)
+                //     setSignInUserEmail(data.email);
+                 navigate(form, { replace: true });
+           navigate("/")
+              })
+        }
     return (
     <>
       <div>
     
-        <div className="bg-[#82c1da]  " >
+        <div className="bg-[#ee7da8]  " >
       <div className="px-4 py-3 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl ">
         <div className="relative flex items-center  justify-between ">
           <a
@@ -38,7 +94,9 @@ const Navbar = () => {
             className="inline-flex items-center"
           >
         
-        <img className='w-[60%] h-[50%] lg:w-[70%] lg:h-[65%] md:h-[60%] md:w-[55%]' src={logo} alt=''></img>
+       <div className="flex items-center justify-center w-16 h-16 mx-2 overflow-hidden rounded-full">
+    <img src={logo}/>
+  </div>
           </a>
           <ul className="text-black cursor-pointer text-lg items-center hidden space-x-8 lg:flex">
             {menuItems}
@@ -117,54 +175,80 @@ const Navbar = () => {
 
         
         <div
-          onClick={() => setModalStatus(false)}
           className="relative z-10"
-          aria-labelledby="modal-title"
-          role="dialog"
-          aria-modal="true"
+          // aria-labelledby="modal-title"
+          // role="dialog"
+          // aria-modal="true"
         >
-          <div className="fixed inset-0 bg-gray-600 bg-opacity-40 transition-opacity"></div>
-          <div data-aosName="zoom-in" className=" lg:ml-64  fixed inset-0 z-10 overflow-y-auto shadow-gray-300 shadow-lg">
+          <div data-aosName="zoom-in" className=" lg:ml-64  fixed inset-0 z-10 overflow-y-auto ">
+           
             <div className="flex min-h-full items-end justify-center  text-center sm:items-center sm:p-0">
 
               <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-4xl lg:mr-[20%]">
-
+                      <button
+                        className="p-2 absolute z-2 bg-[#EA0F62]  right-1 transition duration-200 rounded hover:bg-[#c7497a] focus:bg-[#EA0F62] focus:outline-none focus:shadow-outline"
+                       onClick={() => setModalStatus(false)}
+                      >
+                        <svg className="w-5 text-gray-600" viewBox="0 0 24 24">
+                          <path
+                            fill="currentColor"
+                            d="M19.7,4.3c-0.4-0.4-1-0.4-1.4,0L12,10.6L5.7,4.3c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4l6.3,6.3l-6.3,6.3 c-0.4,0.4-0.4,1,0,1.4C4.5,19.9,4.7,20,5,20s0.5-0.1,0.7-0.3l6.3-6.3l6.3,6.3c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3 c0.4-0.4,0.4-1,0-1.4L13.4,12l6.3-6.3C20.1,5.3,20.1,4.7,19.7,4.3z"
+                          />
+                        </svg>
+                      </button>
                 <div className="bg-white grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1  pl-4 pt-5 sm:pl-6 sm:pb-10 mx-auto">
                   <div className='flex justify-center items-center'>
                     <img className=' w-[80%]' src={loginPhoto}></img>
                    
                   </div>
-                  <div className='bg-white  drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)]  py-8 lg:px-16 md:px-10 px-16' >
+                  <div className='bg-white z-1 relative  drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)]  py-8 my-4 lg:px-16 md:px-10 px-16' >
            
+           <form onSubmit = { handleSubmit(handleLogin)} >
+          
+           <div>
             <p>Email</p>
-            <input type='email' className='bg-gray-50 mb-2 rounded shadow-inner placeholder:text-center h-10   focus:outline-blue-800 border-[1px] border-gray-800 w-full '/>
+            <input type="email" 
+                        {...register("email" , {required: "Email Address is required"})}
+            className=' mb-2 rounded shadow-inner placeholder:text-center h-10   focus:outline-blue-800 border-[1px] border-gray-800 w-full '/>
+                {errors.email && <p className='text-red-600'>{errors.email?.message}</p>}
+            </div>
+            <div>
             <p>Password</p>
-            <input type='email'  className='bg-gray-50 rounded shadow-inner placeholder:text-center h-10  focus:outline-blue-800 border-[1px] border-gray-800 w-full '/>
-            <Link to = '/'
-            onClick = {
-              () => setModalStatus(false)
-            } >
-                 <button className='h-10 w-full loginButton mt-2 rounded text-white text-center'>Login</button>
-            </Link>
-            <h2 className='text-xs text-[#207198]'>Forgot Password?</h2>
+            <input 
+                     {...register("password" , {
+                            required:"password required",
+                            minLength: {value: 6 , message:'password must be 6 character or longer'}
+                            })}
+            className=' mb-2 rounded shadow-inner placeholder:text-center h-10   focus:outline-blue-800 border-[1px] border-gray-800 w-full '/>
+                  {errors.password && <p className='text-red-600'>{errors.password?.message}</p>}
+            </div>
+         
+            <input className='h-10 cursor-pointer w-full loginButton mt-2 text-white font-semibold rounded bg-pink-400' value="Login" type="submit" >
+ 
+            </input>
+                      {signInError && <p className='text-gray-100'>{signInError}</p>}
+           
+
+            </form>
+            <h2 className='text-xs text-[#207198]'>You Dont have an account ? <Link to='register'><span onClick={() => setModalStatus(false)} className='text-pink-500'>Register</span></Link></h2>
             <div className='flex justify-between items-center'>
                 <hr></hr>
                 <h2>or</h2>
                 <hr></hr>
             </div>
 
-             <Link to='/'>  
-             <div className='h-10 w-full px-2  flex justify-start pl-14 gap-4 items-center bg-[#E3F1FE]   mt-2 rounded  border-[1px] border-[#207198] cursor-pointer shadow-sm hover:shadow-lg' >
+           <div onClick = {
+             () => setModalStatus(false)
+           } >
+             <div
+             onClick={handleGoogleSignin}
+             
+             className='h-10 cursor-pointer w-full px-2  flex justify-start pl-14 gap-4 items-center bg-[#E3F1FE]   mt-2 rounded  border-[1px] border-[#207198] cursor-pointer shadow-sm hover:shadow-lg' >
                 <FcGoogle className='text-lg'></FcGoogle>
                 <h2 className='text-sm text-[#207198]'>Continue With Google</h2>
                 
-            </div></Link>
-            <Link to='/'>  
-             <div className='h-10 w-full px-2 flex justify-start gap-4 pl-14 items-center bg-[#E3F1FE]   mt-2 rounded  border-[1px] border-[#207198] cursor-pointer shadow-sm hover:shadow-lg'>
-                <BsFacebook className='text-lg text-[#207198]'></BsFacebook>
-                <h2 className='text-sm text-[#207198]'>Continue With Facebook</h2>
-            </div>
-            </Link>
+            </div></div>
+          
           
        
         </div>

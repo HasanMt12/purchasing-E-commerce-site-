@@ -15,7 +15,7 @@ const AllBabyProduct = () => {
                 const data = await response.json();
                 setAllProducts(data)
                 setIsLoading(false);
-                console.log(data);
+              
                 // Update state or do something with the fetched data
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -34,13 +34,13 @@ const AllBabyProduct = () => {
                     <Loader></Loader>
                 ):(
 
-                      <div>
-            <h2 className="text-bold text-md my-4 text-center text-[#9e2c52]">Baby Products</h2>
-            <div className="lg:w-10/12 md:w-11/12 px-4 mx-auto">
-            <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-2 px-4 ">
+                    <div>
+            <h2 className="font-bold  text-center  lg:text-xl text-lg my-4 text-[#df3b6c]"> Beauty Products</h2>
+            <div className="w-[97%] px-4 mx-auto">
+            <div className="section ">
             {
-                allProducts &&
-                    allProducts.map((product, key) => (
+             allProducts &&
+                   allProducts.map((product, key) => (
                        <ProductCard key={key} product={product}>
 
                        </ProductCard>

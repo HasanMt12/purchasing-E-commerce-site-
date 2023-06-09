@@ -14,7 +14,7 @@ const BeautyProducts = () => {
                 const response = await fetch('https://99-pro-server.vercel.app/beautyProducts');
                 const data = await response.json();
                 setAllProducts(data)
-                console.log(data);
+           
                 // Update state or do something with the fetched data
             } catch (error) {
                 console.error('Error fetching data:', error);

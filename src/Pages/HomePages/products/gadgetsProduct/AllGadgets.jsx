@@ -12,7 +12,7 @@ const AllGadgets = () => {
                 const response = await fetch('https://99-pro-server.vercel.app/gadgetsAndTools');
                 const data = await response.json();
                 setAllGadgets(data)
-                console.log(data);
+               
                 // Update state or do something with the fetched data
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -22,13 +22,14 @@ const AllGadgets = () => {
         fetchData();
     }, []);
     return (
-       <div>
-            <h2 className="text-bold text-center text-md my-4 text-[#9e2c52]"> Home And Kitchen</h2>
-            <div className="lg:w-10/12 md:w-11/12 px-4 mx-auto">
-            <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-2 px-4 ">
+     <>
+           <div>
+            <h2 className="font-bold  text-center  lg:text-xl text-lg my-4 text-[#df3b6c]"> Beauty Products</h2>
+            <div className="md:w-[97%] w-full px-4 mx-auto">
+            <div className="section ">
             {
-                allGadgets &&
-                    allGadgets.map((product, key) => (
+             allGadgets &&
+                   allGadgets.map((product, key) => (
                        <ProductCard key={key} product={product}>
 
                        </ProductCard>
@@ -39,6 +40,7 @@ const AllGadgets = () => {
                     </div>
                     </div>
         </div>
+     </>
     );
 };
 
