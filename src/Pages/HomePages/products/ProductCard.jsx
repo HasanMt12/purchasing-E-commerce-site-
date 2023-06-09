@@ -1,6 +1,33 @@
-
+import { useContext, useState } from "react";
+import { toast } from "react-hot-toast";
+import { AuthContext } from "../../../Authentication/AuthProvider";
+import { AiFillHeart } from "react-icons/ai";
 const ProductCard = ({product}) => {
     const { photo, name, price} = product;
+     const {user} = useContext(AuthContext)
+    const [fill, setFill] = useState(false);
+
+    const handleWishList = (product) => {
+    const dbWishlist = { ...product };
+    dbWishlist.email = user?.email;
+    dbWishlist.color = "red";
+    delete dbWishlist._id;
+
+    fetch('http://localhost:5000/wishlist', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dbWishlist),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        setFill(true);
+        console.log(result)
+        toast.success("added successfully");
+      })
+      .catch((err) => toast.error(err.message));
+  };
     return (
         <>
             <div 
@@ -13,15 +40,35 @@ const ProductCard = ({product}) => {
 
   <div className=" lg:px-6 px-2 py-2">
    
-
-    <h3 className="  lg:text-lg text-[12px]  font-medium text-[#c73f8a]">{name}</h3>
+        <div className="flex justify-between items-start">
+             <h3 className="  lg:text-lg text-[12px]  font-medium text-[#c73f8a]">{name}</h3>
+        <button
+              onClick={() => handleWishList(product)}
+              className={"w-8 text-center mr-2 "}>
+             <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill={product.color ? product.color : "none"}
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+                />
+              </svg>
+            </button>
+        </div>
+    
 
     <p className="lg:mt-1.5 absolute lg:bottom-16 sm:bottom-8  lg:text-sm   text-[10px] text-gray-700"><span className="text-green-500 font-bold">{price}</span> BDT
     </p>
 
    
       <button
-        className=" w-[80%] inset-x-0 absolute lg:bottom-5 bottom-2 mx-auto text-white rounded bg-[#be6bac] lg:p-2 p-[4px] lg:text-sm text-xs  font-medium transition hover:scale-105"
+        className=" w-[90%] inset-x-0 absolute lg:bottom-5 bottom-2 mx-auto text-white rounded bg-[#ee7da8] lg:p-2 p-[4px] lg:text-sm text-xs  font-medium transition hover:scale-105"
       >
         Add to Cart
       </button>

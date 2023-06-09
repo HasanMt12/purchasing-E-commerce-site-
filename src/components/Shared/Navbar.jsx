@@ -7,6 +7,7 @@ import "./navbar.css"
 import { AuthContext } from '../../Authentication/AuthProvider';
 import { useForm } from "react-hook-form";
 import useAdmin from '../../hooks/useAdminSecurity';
+import { AiFillHeart } from 'react-icons/ai';
 
 const Navbar = () => {
    const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -31,10 +32,11 @@ const Navbar = () => {
        <Link to='/'><li className='cursor-Pointer nav hover:text-[#F10B65]'>Blog</li></Link> 
 
     
-       <Link to='/'><li className='cursor-Pointer nav hover:text-[#F10B65]' >My Profile</li></Link> 
+       
        {
         isAdmin &&  <Link to='/dashboard'><li className='cursor-Pointer nav hover:text-[#F10B65]'>Dashboard</li></Link>
        }
+ <Link to='/wishlist'> <AiFillHeart  className='cursor-Pointer  text-red-500 text-2xl rounded-lg  shadow-lg' ></AiFillHeart></Link> 
        {user?.uid 
        
        ? <>
@@ -51,7 +53,9 @@ const Navbar = () => {
             onClick={() => setModalStatus(true)}
             >Login</button>
         </Link>
+       
         }
+        
      </Fragment>
 
 
@@ -201,7 +205,7 @@ const Navbar = () => {
                     <img className=' w-[80%]' src={loginPhoto}></img>
                    
                   </div>
-                  <div className='bg-white z-1 relative  drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)]  py-8 my-4 lg:px-16 md:px-10 px-16' >
+                  <div className='bg-white z-1 relative  shadow-md  py-8 my-4 lg:px-16 md:px-10 px-16' >
            
            <form onSubmit = { handleSubmit(handleLogin)} >
           

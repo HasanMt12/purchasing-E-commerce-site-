@@ -1,6 +1,8 @@
 import { useState } from "react";
 
 import { IoIosArrowForward} from "react-icons/io";
+import ProductAction from "./ProductAction";
+import AllUsers from "./Allusers";
 const Dashboard = () => {
 
         const [openTab, setOpenTab] = useState(1);
@@ -79,11 +81,11 @@ const Dashboard = () => {
               <div className="tab-content tab-space">
                 <div className={openTab === 1 ? "block" : "hidden"} id="link1">
                 <div> 
-                 users
+                 <AllUsers></AllUsers>
                </div>
                 </div>
                 <div className={openTab === 2 ? "block" : "hidden"} id="link2">
-                 product
+                <ProductAction></ProductAction>
                 </div>
                  <div className={openTab === 3 ? "block" : "hidden"} id="link2">
                   
