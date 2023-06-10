@@ -39,7 +39,7 @@ const Navbar = () => {
   const menuItems = <Fragment>
     
 
-       <Link to='/'><li className='cursor-Pointer nav hover:text-[#F10B65]'>Blog</li></Link> 
+       <Link to='/'><li className='cursor-Pointer nav hover:text-[#F10B65]'>Home</li></Link> 
        {
         isAdmin &&  <Link to='/dashboard'><li className='cursor-Pointer nav hover:text-[#F10B65]'>Dashboard</li></Link>
        }

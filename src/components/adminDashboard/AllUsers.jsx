@@ -16,7 +16,7 @@ const AllUsers = () => {
 
        // make buyer goldenUser
     const handleMakeGoldenUsers = id => {
-        fetch(`https://99-pro-server.vercel.app/users/goldenUser/${id}`, {
+        fetch(`https://99-pro-server.vercel.app/users/admin/${id}`, {
             method: 'PUT'
         })
         .then(res => res.json())
@@ -50,11 +50,11 @@ const AllUsers = () => {
   </div>
  
 <div className="flex justify-end">
-    {user?.verification !== "stockOut" ? (
+    {user?.verification !== "goldenUser" ? (
                        <strong onClick = {
                            () => handleMakeGoldenUsers(user._id)
                        }
-      className="-mb-[2px] -me-[2px] inline-flex items-center gap-1 rounded-ee-xl rounded-ss-xl bg-pink-600 px-3 py-1.5 text-white"
+      className="-mb-[2px] cursor-pointer -me-[2px] inline-flex items-center gap-1 rounded-ee-xl rounded-ss-xl bg-pink-600 px-3 py-1.5 text-white"
     >
 
 

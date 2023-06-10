@@ -31,15 +31,9 @@ const Dashboard = () => {
                 (openTab === 3
                     ? "   text-sm text-[#EA0F62]"
                     : "  text-sm text-[#686063] ")}>
-              <h2>Home And Kitchen</h2><IoIosArrowForward></IoIosArrowForward>
+              <h2>Payment</h2><IoIosArrowForward></IoIosArrowForward>
             </li>
-           <li onClick={e => {e.preventDefault(); setOpenTab(4); }}
-             className = {"cursor-pointer    mx-6 my-3 font-semibold  uppercase hover:text-[#EA0F62]  text-start flex justify-start gap-4 items-center "+
-                (openTab === 4
-                    ? "   text-sm text-[#EA0F62]"
-                    : "  text-sm text-[#686063] ")}>
-              <h2>Baby Product</h2><IoIosArrowForward></IoIosArrowForward>
-            </li>
+           
           </ul>
             </div>
             <div className="lg:w-[85%] w-[98%] shadow-md">
@@ -51,7 +45,7 @@ const Dashboard = () => {
                 (openTab === 1
                     ? "md:text-md text-xs text-[#EA0F62]"
                     : "md:text-md text-xs text-[#686063] ")}>
-              <h2>Home</h2><IoIosArrowForward></IoIosArrowForward>
+              <h2>All user</h2><IoIosArrowForward></IoIosArrowForward>
             </li>
             <li onClick={e => {e.preventDefault(); setOpenTab(2); }}
              className = {"cursor-pointer md:mx-2 sm:mx-1 md:my-4 my-2 font-semibold  uppercase hover:text-[#EA0F62]  text-start flex justify-start  items-center "+
@@ -82,7 +76,7 @@ const Dashboard = () => {
                 <div className={openTab === 2 ? "block" : "hidden"} id="link2">
                 <ProductAction></ProductAction>
                 </div>
-                 <div className={openTab === 3 ? "block" : "hidden"} id="link2">
+                 <div className={openTab === 3 ? "block" : "hidden"} id="link3">
                   <PaymentInvoice></PaymentInvoice>
                 </div>
                

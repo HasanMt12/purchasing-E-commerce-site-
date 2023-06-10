@@ -2,7 +2,9 @@
 import { useEffect, useState } from "react";
 
 import ProductCard from "./ProductCard";
-
+ import {  MdOutlineShoppingCart } from "react-icons/md";
+import Aos from "aos";
+import "aos/dist/aos.css";
 const ProductsSection = () => {
       const [allProducts, setAllProducts] = useState([]);
     const [limit] = useState(4)
@@ -22,11 +24,16 @@ const ProductsSection = () => {
 
         fetchData();
     }, []);
+
+      useEffect(()=>{
+    Aos.init({duration:1200})
+  },[])
     return (
          <div>
-            <h2 className = "my-4 text-center text-[#b84f77] text-2xl font-bold" >
-                Recommended Products
-            </h2>
+            <div className="flex justify-center items-center gap-2 text-[#df3b6c]">
+                 <h2  data-aos="zoom-in" className="font-bold  text-center  lg:text-xl text-lg my-4 "> All Products</h2>
+                < MdOutlineShoppingCart></ MdOutlineShoppingCart>
+            </div> 
               <div className="section">
             {allProducts && 
                     allProducts.slice(0, limit).map((product, key) => (

@@ -2,49 +2,53 @@ import { useQuery } from "@tanstack/react-query";
 
 
 const PaymentInvoice = () => {
-     const {data: products = [] , refetch } = useQuery({
-        queryKey: ['products'],
+     const {data: payments = [] , refetch } = useQuery({
+        queryKey: ['payments'],
         queryFn: async() =>{
             const res = await fetch('https://99-pro-server.vercel.app/payment');
             const data = await res.json();
             console.log(data);
             return data;
-            
+           
         }
     });
 
     return (
-             <div>
-            <h2 className="text-3xl text-center font-sans">All producs</h2>
-      <div className="overflow-x-auto">
+             <div >
+            <h2 className="text-3xl  text-center font-sans">Payment products</h2>
+      <div className="">
         
-            {products.map((product, i) => (
-                <div key = {product._id}
-                className = "rounded-xl  w-10/12 mx-auto my-4 p-4 border-b-2 border-pink-500  bg-gray-50" >
+            {
+              payments.map((payment, i) => (
+                <div key = {
+                  payment._id
+                }
+                className = "rounded-xl h-[10rem] w-10/12 mx-auto my-4 p-4 border-b-2 border-pink-500  bg-gray-50" >
 
-    <h2>{product.name}</h2>
- <h2>{product.price}</h2>
- <h2>{product.phone}</h2>
-  <h2>{product.TransId}</h2>
+    <h2>{payment.name}</h2>
+ 
     <div>
-      <h3 className="font-medium sm:text-lg">
+      <h3 className="font-medium  sm:text-lg text-2xl">
        
-        {product.email}
-    
-      </h3>
+      Email: <span className="text-pink-600/70 font-medium  sm:text-sm text-lg">{payment.email}</span>
      
+      </h3>
+
+     <h2>Price: <span className="text-pink-600/70 font-medium  sm:text-sm text-lg">{payment.price}</span></h2>
+ <h2> Number:<span className="text-pink-600/70 font-medium  sm:text-sm text-lg">{payment.phone}</span></h2>
+  <h2> TransId:<span className="text-pink-600/70 font-medium  sm:text-sm text-lg">{payment.TransId}</span></h2>
   </div>
  
 <div className="flex justify-end">
-    {product?.verification !== "deliver" ? (
+    {payment?.verification !== "deliver" ? (
                        <strong onClick = {
                            () => handleMakedeliver(produc._id)
                        }
-      className="-mb-[2px] -me-[2px] inline-flex items-center gap-1 rounded-ee-xl rounded-ss-xl bg-pink-600 px-3 py-1.5 text-white"
+      className="-mb-[2px] cursor-pointer -me-[2px] inline-flex items-center gap-1 rounded-ee-xl rounded-ss-xl bg-pink-600 px-3 py-1.5 text-white"
     >
 
 
-      <span className="text-[10px] font-medium sm:text-xs">Make a Golden produc </span>
+      <span className="text-[10px] font-medium sm:text-xs">Make a Deliver </span>
     </strong>
                     ) : (
                        <strong

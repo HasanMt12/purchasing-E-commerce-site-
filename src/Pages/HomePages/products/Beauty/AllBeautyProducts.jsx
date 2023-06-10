@@ -2,7 +2,7 @@
 import Loader from "../../../../components/Shared/Loader";
 import ProductCard from "../ProductCard";
 import { useEffect, useState } from "react";
-
+ import { GiLipstick } from "react-icons/gi";
 const AllBeautyProducts = () => {
      const [allProducts, setAllProducts] = useState([]);
        const [isLoading, setIsLoading] = useState(true);
@@ -34,7 +34,10 @@ const AllBeautyProducts = () => {
                 ):(
 
                     <div>
-            <h2 className="font-bold  text-center  lg:text-xl text-lg my-4 text-[#df3b6c]"> Beauty Products</h2>
+            <div className="flex justify-center items-center gap-2 text-[#df3b6c]">
+                 <h2 className="font-bold  text-center  lg:text-xl text-lg my-4 "> Beauty PRoducts</h2>
+                <GiLipstick></GiLipstick>
+            </div> 
             <div className="w-[97%] px-4 mx-auto">
             <div className="section ">
             {

@@ -27,10 +27,10 @@ const Hero = () => {
           >
           
             <SwiperSlide  className='my-1 lg:my-2'> 
-                    <img src={logo1} className=" " />
+                    <img src='https://i.ibb.co/zHCYz4M/1.png' className=" " />
               </SwiperSlide>
             <SwiperSlide  className='my-1 lg:my-2'> 
-                    <img src={logo2} className=" " />
+                    <img src='https://i.ibb.co/bgqQCjY/i.jpg' className=" " />
               </SwiperSlide>
               <SwiperSlide  className='my-1 lg:my-2'> 
                     <img src={logo3} className=" " />

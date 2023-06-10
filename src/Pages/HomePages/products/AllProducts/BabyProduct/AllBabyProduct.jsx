@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ProductCard from "../../ProductCard";
 import Loader from "../../../../../components/Shared/Loader";
-
+import { MdBabyChangingStation } from "react-icons/md";
 
 const AllBabyProduct = () => {
      const [allProducts, setAllProducts] = useState([]);
@@ -35,7 +35,10 @@ const AllBabyProduct = () => {
                 ):(
 
                     <div>
-            <h2 className="font-bold  text-center  lg:text-xl text-lg my-4 text-[#df3b6c]"> Beauty Products</h2>
+             <div className="flex justify-center items-center gap-2 text-[#df3b6c]">
+                 <h2 className="font-bold  text-center  lg:text-xl text-lg my-4 "> Baby Products</h2>
+                <MdBabyChangingStation></MdBabyChangingStation>
+            </div> 
             <div className="w-[97%] px-4 mx-auto">
             <div className="section ">
             {

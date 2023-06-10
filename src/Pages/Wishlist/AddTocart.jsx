@@ -3,18 +3,20 @@ import { AuthContext } from "../../Authentication/AuthProvider";
 
 import { FaShopify} from "react-icons/fa";
 import { toast } from "react-hot-toast";
+import Loader from "../../components/Shared/Loader";
 
 const AddTocart = () => {
       const [openTab, setOpenTab] = useState(1);
       const [modalStatus, setModalStatus] = useState(false);
       const { user } = useContext(AuthContext);
       const [data, setData] = useState([]);
-
+    const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
+    setIsLoading(true)
     fetch(`https://99-pro-server.vercel.app/cart?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => setData(data));
-    
+     setIsLoading(false)
   }, [user?.email]);
 
    const handleBooking = (event) => {
@@ -53,16 +55,20 @@ const AddTocart = () => {
       });
   };
     return (
-        <div className="w-11/12 mx-auto h-screen">
+
+        <>
+        {isLoading? ( <Loader></Loader>):(
+            <div className="w-11/12 mx-auto h-screen">
          <h2 className="text-center lg:text-4xl text-xl font-bold my-3">Featured Product</h2>
       <p className="w-2/3 mx-auto  mb-2 font-light text-slate-500 lg:mb-2 md:text-lg lg:text-xl text-slate-400 text-center">
-        Your Wishlist
+        Your Cart
       </p>
       <div className="section">
         {data.map((product) => (
          
 
 <>
+
   <li key={product._id} className="flex rounded-lg my-2 bg-pink-200/50 items-center p-6 mx-2 gap-4">
         <img
           src={product.photo}
@@ -355,7 +361,10 @@ const AddTocart = () => {
         ))}
       </div>
        
-        </div>
+        </div> 
+        )}
+       
+        </>
     );
 };
 
