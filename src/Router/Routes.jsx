@@ -8,6 +8,7 @@ import PrivateRoute from "../Router/PrivateRoute/PrivateRoute.jsx";
 import AdminRoute from "../Router/AdminRoute/AdminRoute";
 import Wishlist from "../Pages/Wishlist/Wishlist";
 import AddTocart from "../Pages/Wishlist/AddTocart";
+import AllProducts from "../Pages/HomePages/products/AllProducts/AllProducts";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: <PrivateRoute><AddTocart></AddTocart></PrivateRoute> 
+      },
+       {
+        path: "/products",
+        element: <PrivateRoute><AllProducts></AllProducts></PrivateRoute> 
       },
      
       
