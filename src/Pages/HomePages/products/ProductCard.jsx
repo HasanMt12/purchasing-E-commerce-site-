@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useContext, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { AuthContext } from "../../../Authentication/AuthProvider";
@@ -53,23 +54,23 @@ const ProductCard = ({ product }) => {
   };
 
   useEffect(() => {
-    Aos.init({ duration: 1200 });
+    Aos.init({ duration: 3000 });
   }, []);
 
   return (
     <>
       <div className=" my-2 mx-2  bg-white border-b shadow-md shadow-[#e9b0c6] rounded-lg border-[#e25a8e] relative block overflow-hidden">
         <img
-          data-aos="fade-up"
+          data-aos="fade-down"
           src={photo}
           alt=""
           className="h-[50%] w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[50%]"
         />
 
-        <div className=" lg:px-6 px-2 py-2">
+        <div className=" lg:px-6 px-2 pt-2">
           <div className="flex justify-between items-start">
             <h3
-              data-aos="fade-right"
+              // data-aos="fade-right"
               className="  lg:text-lg text-[12px]  font-medium text-[#c73f8a]"
             >
               {name}
@@ -96,10 +97,11 @@ const ProductCard = ({ product }) => {
           </div>
 
           <p
-            data-aos="fade-right"
-            className="lg:mt-1.5 absolute lg:bottom-16 sm:bottom-8  lg:text-sm   text-[10px] text-gray-700"
+            // data-aos="fade-right"
+            className="lg:mt-1 absolute lg:bottom-20 sm:bottom-8  lg:text-sm   text-[10px] text-gray-700"
           >
-            <span className="text-green-500 font-bold">{price}</span> BDT
+            <span className="text-blue-500 font-bold">৳ {price}</span> 
+
           </p>
           {verification && <h2>sold Out</h2>}
 
