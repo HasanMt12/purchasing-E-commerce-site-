@@ -12,6 +12,7 @@
   "dependencies": {
     "@tanstack/react-query": "^4.29.12",
     "aos": "^2.3.4",
+    "axios": "^1.4.0",
     "firebase": "^9.22.1",
     "lottie-react": "^2.4.0",
     "react": "^18.2.0",
@@ -21,6 +22,7 @@
     "react-icons": "^4.9.0",
     "react-infinite-scroll-component": "^6.1.0",
     "react-router-dom": "^6.12.0",
+    "sweetalert2": "^11.7.12",
     "swiper": "^9.3.2"
   },
   "devDependencies": {

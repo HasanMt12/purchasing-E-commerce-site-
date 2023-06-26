@@ -9,12 +9,14 @@ import { useForm } from "react-hook-form";
 import useAdmin from "../../hooks/useAdminSecurity";
 import { AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
 import logo99 from "../../assets/logo99.png";
+import useCart from "../../hooks/useCart";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [modalStatus, setModalStatus] = useState(false);
   const { user, logOut } = useContext(AuthContext);
   const [isAdmin] = useAdmin(user?.email);
+   const [cart] = useCart();
 
   const {
     register,
@@ -59,7 +61,7 @@ const Navbar = () => {
           <AiOutlineShoppingCart className="cursor-Pointer   text-white font-bold text-4xl  "></AiOutlineShoppingCart>
         </Link>
         <span className="absolute top-0 right-0 inline-block w-3 h-3 transform translate-x-1/2 animate-bounce font-bold text-blue-400 -translate-y-1/2  rounded-full">
-          {data.length}
+         +{cart?.length || 0}
         </span>
       </span>
 
@@ -128,8 +130,8 @@ const Navbar = () => {
   };
   return (
     <>
-      <div>
-        <div className="bg-[#ee7da8]  ">
+      <div className="sticky top-0 z-10 ">
+        <div className = "bg-[#ee7da8] bg-opacity-60" >
           <div className="px-4 py-3 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl ">
             <div className="relative flex items-center  justify-between ">
               <a

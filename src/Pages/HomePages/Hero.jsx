@@ -7,8 +7,7 @@ import 'swiper/css/scrollbar';
 // Import Swiper React components
 import "swiper/css/effect-coverflow";
 import 'swiper/css/navigation';
-import logo1 from '../../assets/1.png'
-import logo2 from '../../assets/2.png'
+
 import logo3 from '../../assets/3.png'
 import logo4 from '../../assets/4.png'
 import './HomePage.css'
